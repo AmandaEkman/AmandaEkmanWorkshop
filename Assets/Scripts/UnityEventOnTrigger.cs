@@ -22,20 +22,18 @@ public class UnityEventOnTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(tagToActivate))
-        {
+
             onTriggerEnter.Invoke();
             Debug.Log("Unity Event Trigger (enter) activated on " + gameObject);
-        }
+
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag(tagToActivate))
-        {
+
             onTriggerExit.Invoke();
             Debug.Log("Unity Event Trigger (exit) activated on " + gameObject);
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)

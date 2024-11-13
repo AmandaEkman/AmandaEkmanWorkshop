@@ -18,9 +18,12 @@ public class TopDownMovement : MonoBehaviour
     
     private Vector2 moveInput;
     private Rigidbody2D rb;
+
+    private Animator animator;
     
     void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         
         // Set gravity scale to 0 so player won't "fall" 
@@ -46,6 +49,8 @@ public class TopDownMovement : MonoBehaviour
         }
         
         // Write code for walking animation here. (Suggestion: send your current velocity into the Animator for both the x- and y-axis.)
+        animator.SetBool("Walking animation front", rb.velocity.magnitude > 0);
+        
     }
     
     // Handle Move-input
@@ -53,7 +58,7 @@ public class TopDownMovement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>().normalized;
-        
+        animator.SetBool("Walking animation front", context.ReadValue<Vector2>().magnitude != 0);   
     }
 
     public void Action1(InputAction.CallbackContext context)
